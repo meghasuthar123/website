@@ -1,0 +1,896 @@
+/* =============================================
+         RESET & BASE
+      ============================================= */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Brand colors */
+  --blue-main: #5b6ef5;
+  --blue-light: #5b6ef5;
+  --blue-dark: #4757e8;
+  --yellow: #facc15;
+  --text-dark: #0f172a;
+  --text-mid: #334155;
+  --text-soft: #64748b;
+  --bg-white: #ffffff;
+  --bg-light: #f8fafc;
+  --border: rgba(0, 0, 0, 0.08);
+
+  /* Spacing scale */
+  --sp-4: 4px;
+  --sp-8: 8px;
+  --sp-12: 12px;
+  --sp-16: 16px;
+  --sp-24: 24px;
+  --sp-32: 32px;
+  --sp-48: 48px;
+  --sp-64: 64px;
+  --sp-80: 80px;
+  --sp-96: 96px;
+
+  /* Typography */
+  --font-display: "Sora", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 12px;
+  --r-lg: 20px;
+  --r-pill: 400px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background: var(--bg-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* =============================================
+         UTILITY CLASSES
+      ============================================= */
+
+/* Container – 1160px wide, centered, padded */
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 var(--sp-24);
+}
+
+/* Flex helpers */
+.flex {
+  display: flex;
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Text accent – blue keyword inside headings */
+.accent {
+  color: var(--blue-main);
+}
+
+/* Section label sitting above a heading */
+.section-label {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue-main);
+  margin-bottom: var(--sp-12);
+}
+
+/* =============================================
+         NAV
+      ============================================= */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  gap: 0px;
+}
+.logo-img {
+  height: 80px;
+  object-fit: contain;
+}
+.logo span {
+  margin-left: -30px;
+}
+.logo-icon {
+  width: 50px;
+  height: 80px;
+  background: var(--blue-main);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: #fff;
+}
+/* hero image*/
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+/* Nav links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-32);
+}
+
+.nav-links a {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-mid);
+  transition: color 0.2s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--blue-main);
+}
+
+/* CTA button in nav */
+.btn-primary {
+  width: 200px;
+  background: var(--blue-main);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 14px;
+
+  font-weight: 600;
+  padding: 10px;
+  padding-left: 50px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    transform 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-8);
+}
+
+.btn-primary:hover {
+  background: var(--blue-dark);
+  transform: translateY(-1px);
+}
+
+/* Secondary / outline button */
+.btn-outline {
+  background: transparent;
+  color: var(--blue-main);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  padding: var(--sp-8) var(--sp-24);
+  border-radius: 10px;
+  border: 2px solid var(--blue-main);
+  cursor: pointer;
+  transition:
+    background 0.2s,
+    color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-8);
+}
+
+.btn-outline:hover {
+  background: var(--blue-light);
+}
+
+/* =============================================
+         HERO SECTION
+      ============================================= */
+.hero {
+  padding: 180px 0;
+  background: var(--bg-light);
+  /* subtle diagonal line pattern */
+  background-image: radial-gradient(
+    circle at 80% 20%,
+    rgba(37, 99, 235, 0.06) 0%,
+    transparent 55%
+  );
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-64);
+  align-items: center;
+}
+
+/* Left column – text */
+.hero-text h1 {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.18;
+  color: var(--text-dark);
+  margin-bottom: var(--sp-16);
+  margin-top: -40px;
+}
+
+.hero-text p {
+  font-size: 16px;
+  color: var(--text-soft);
+  line-height: 1.7;
+  max-width: 440px;
+  margin-bottom: var(--sp-32);
+}
+
+/* Checklist bullets */
+.hero-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-12);
+  margin-bottom: var(--sp-32);
+}
+
+.hero-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-12);
+  font-size: 15px;
+  color: var(--text-mid);
+}
+
+/* Blue circle checkmark */
+.check-icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: var(--blue-main);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+.check-icon svg {
+  width: 10px;
+  height: 10px;
+  stroke: #fff;
+  fill: none;
+  stroke-width: 2.5;
+}
+
+/* Hero CTA row */
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-16);
+}
+
+/* Right column – illustration placeholder + stats card */
+.hero-visual {
+  position: relative;
+}
+
+.hero-illustration {
+  width: 100%;
+  border-radius: var(--r-lg);
+  background: linear-gradient(135deg, #dbeafe 0%, #eff6ff 100%);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* SVG illustration drawn inline */
+.hero-illustration svg {
+  width: 100%;
+  opacity: 0.85;
+}
+
+/* Floating rating card */
+.hero-badge {
+  position: absolute;
+  bottom: var(--sp-24);
+  right: -var(--sp-16);
+  background: #fff;
+  border-radius: var(--r-md);
+  padding: var(--sp-16) var(--sp-24);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-16);
+}
+
+.hero-badge-rating {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-dark);
+  line-height: 1;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: var(--sp-4);
+}
+
+.star {
+  color: var(--yellow);
+  font-size: 14px;
+}
+
+.hero-badge-label {
+  font-size: 12px;
+  color: var(--text-soft);
+}
+
+.hero-badge-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+}
+
+.hero-badge-pros {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-dark);
+}
+
+.hero-badge-pros span {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-soft);
+}
+
+/* =============================================
+         "WHY COMPLIANCE MATTERS" SECTION
+      ============================================= */
+.why {
+  padding: var(--sp-96) 0;
+  background: var(--bg-white);
+}
+
+.why-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-64);
+  align-items: center;
+}
+
+/* Left – heading block */
+.why-heading h2 {
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 1.22;
+  color: var(--text-dark);
+  max-width: 340px;
+  margin-bottom: var(--sp-16);
+}
+
+.why-heading p {
+  font-size: 15px;
+  color: var(--text-soft);
+  line-height: 1.75;
+  max-width: 380px;
+}
+
+/* Bar chart illustration */
+.bar-chart-wrap {
+  margin-top: var(--sp-32);
+  background: var(--bg-light);
+  border-radius: var(--r-md);
+  padding: var(--sp-24);
+}
+
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--sp-12);
+  height: 100px;
+}
+
+.bar {
+  flex: 1;
+  border-radius: 4px 4px 0 0;
+  transition: opacity 0.2s;
+}
+
+.bar:hover {
+  opacity: 0.8;
+}
+
+.bar-1 {
+  height: 55%;
+  background: rgba(37, 99, 235, 0.25);
+}
+.bar-2 {
+  height: 70%;
+  background: rgba(37, 99, 235, 0.4);
+}
+.bar-3 {
+  height: 85%;
+  background: var(--blue-main);
+}
+.bar-4 {
+  height: 60%;
+  background: rgba(37, 99, 235, 0.3);
+}
+.bar-5 {
+  height: 100%;
+  background: var(--blue-main);
+}
+.bar-6 {
+  height: 75%;
+  background: rgba(37, 99, 235, 0.45);
+}
+
+/* Right – feature cards */
+.why-features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-24);
+}
+
+.feature-card {
+  display: flex;
+  gap: var(--sp-16);
+  padding: var(--sp-24);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  transition:
+    box-shadow 0.2s,
+    border-color 0.2s;
+}
+
+.feature-card:hover {
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--blue-main);
+  fill: none;
+  stroke-width: 1.8;
+}
+.feature-icon svg path {
+  fill: #5b67f1;
+}
+
+.feature-text h3 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: var(--sp-4);
+}
+
+.feature-text p {
+  font-size: 14px;
+  color: var(--text-soft);
+  line-height: 1.65;
+}
+
+/* =============================================
+         FOOTER
+      ============================================= */
+footer {
+  background: var(--text-dark);
+  color: rgba(255, 255, 255, 0.55);
+  padding: var(--sp-48) 0;
+  font-size: 14px;
+  text-align: center;
+}
+
+footer a {
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 var(--sp-12);
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--sp-8);
+  margin-bottom: var(--sp-16);
+}
+
+/* =============================================
+         RESPONSIVE – tablet / mobile
+      ============================================= */
+/* =============================================
+   RESPONSIVE – tablet / mobile
+============================================= */
+
+@media (max-width: 900px) {
+  .hero-inner,
+  .why-inner {
+    grid-template-columns: 1fr;
+    gap: var(--sp-48);
+  }
+
+  .hero-text h1 {
+    font-size: 36px;
+    margin-top: 0;
+  }
+
+  .why-heading h2 {
+    font-size: 30px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero-badge {
+    position: static;
+    margin-top: var(--sp-16);
+    display: inline-flex;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 540px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  .hero {
+    padding: 60px 0;
+  }
+
+  .hero-inner,
+  .why-inner {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero-text h1 {
+    font-size: 28px;
+    line-height: 1.25;
+    margin-top: 0;
+  }
+
+  .hero-text p {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+    gap: 14px;
+  }
+  .nav-btn {
+    display: none;
+  }
+  .btn-primary,
+  .btn-outline {
+    width: 100%;
+    justify-content: center;
+    padding: 14px;
+  }
+
+  .hero-badge {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: auto;
+  }
+
+  .logo {
+    font-size: 25px;
+    margin-left: -25px;
+    gap: 20px;
+  }
+
+  .logo-img {
+    height: 52px;
+  }
+
+  .nav-inner {
+    height: 70px;
+  }
+}
+
+/* =============================================
+         HAMBURGER BUTTON  (shown only on mobile)
+      ============================================= */
+
+/* Hidden on desktop, visible below 900px */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  padding: var(--sp-8);
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--r-sm);
+  transition: background 0.2s;
+}
+
+.hamburger:hover {
+  background: var(--bg-light);
+}
+
+/* The three lines */
+.hamburger span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  background: var(--text-dark);
+  border-radius: 2px;
+  transition:
+    transform 0.3s,
+    opacity 0.3s;
+}
+
+/* Animate into an X when drawer is open */
+.hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 900px) {
+  .hamburger {
+    display: flex;
+  }
+}
+
+/* =============================================
+         MOBILE DRAWER OVERLAY
+      ============================================= */
+
+/* Dark backdrop sitting behind the drawer panel */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0; /* covers full viewport */
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 200;
+  opacity: 0;
+  pointer-events: none; /* invisible & not clickable when closed */
+  transition: opacity 0.3s ease;
+}
+
+/* Active state – backdrop becomes visible */
+.drawer-backdrop.is-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* The actual sliding panel */
+.drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100%;
+  background: #fff;
+  z-index: 300;
+  padding: var(--sp-24);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transform: translateX(-100%); /* hidden off-screen to the left */
+  transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Slide in when open */
+.drawer.is-open {
+  transform: translateX(0);
+}
+
+/* Drawer top row – Logo + close button */
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--sp-32);
+}
+
+/* Close (×) button inside drawer */
+.drawer-close {
+  width: 36px;
+  height: 36px;
+  background: var(--bg-light);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: var(--text-soft);
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.drawer-close:hover {
+  background: var(--blue-light);
+  color: var(--blue-main);
+}
+
+/* Individual nav link row inside drawer */
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  flex: 1; /* pushes CTA button to bottom */
+}
+
+.drawer-link {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-16);
+  padding: var(--sp-12) var(--sp-16);
+  border-radius: var(--r-md);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-mid);
+  transition:
+    background 0.18s,
+    color 0.18s;
+  text-decoration: none;
+}
+
+.drawer-link:hover,
+.drawer-link.active {
+  background: var(--blue-light);
+  color: var(--blue-main);
+}
+
+/* Icon wrapper inside each drawer link */
+.drawer-link-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--bg-light);
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.drawer-link:hover .drawer-link-icon,
+.drawer-link.active .drawer-link-icon {
+  background: rgba(37, 99, 235, 0.12);
+}
+
+.drawer-link-icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--text-soft);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.drawer-link:hover .drawer-link-icon svg,
+.drawer-link.active .drawer-link-icon svg {
+  stroke: var(--blue-main);
+}
+
+/* "Contact Us" full-width button at drawer bottom */
+.drawer-cta {
+  margin-top: var(--sp-24);
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: var(--blue-main);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  padding: var(--sp-16);
+  border-radius: var(--r-pill);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+
+.drawer-cta:hover {
+  background: var(--blue-dark);
+}
+
+/* Prevent body scroll while drawer is open */
+body.drawer-open {
+  overflow: hidden;
+}
