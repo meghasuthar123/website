@@ -831,27 +831,37 @@ footer a:hover {
 
 .drawer-link:hover,
 .drawer-link.active {
-  background: var(--blue-light);
+  background: #eef2ff;
   color: var(--blue-main);
 }
 
 /* Icon wrapper inside each drawer link */
 .drawer-link-icon {
-  width: 36px;
-  height: 36px;
-  background: var(--bg-light);
-  border-radius: var(--r-sm);
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
-
-.drawer-link:hover .drawer-link-icon,
-.drawer-link.active .drawer-link-icon {
-  background: rgba(37, 99, 235, 0.12);
+.drawer-link:hover .drawer-link-icon svg,
+.drawer-link.active .drawer-link-icon svg {
+  stroke: var(--blue-main);
+}
+.drawer-logo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
+.drawer-logo .logo-img {
+  height: 42px;
+  width: auto;
+}
+
+.drawer-logo span {
+  margin-left: -8px;
+}
 .drawer-link-icon svg {
   width: 18px;
   height: 18px;
